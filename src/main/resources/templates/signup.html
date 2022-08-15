@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- Replacing the layout with the base layout. -->
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="my-card">
+                        <!-- This is a div that is only shown if there is a message in the session. The
+                       message is removed from the session after it is shown. -->
+                        <div th:if="${session.message}" th:classappend="${session.message.type}" role="alert">
+                            <p th:text="${session.message.content}"></p>
+                            <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                        </div>
+                        
+                        <form th:action="@{/register}" method="post" th:object="${user}">
+                            <!-- A form field for the user to enter their name. -->
+                            <div class="name_field">
+                                <label for="exampleInputEmail1">Name</label>
+                                <input type="text" class="form-control" id="name_field" placeholder="enter your name"
+                                    th:value="${user.name}" name="name" required >
+                                    <!-- This is a Thymeleaf expression that is used to display any
+                                    errors that are associated with the name field. -->
+                                    <p class="errors" th:each="e : ${#fields.errors('name')}" th:text="${e}" role="alert"></p>
+                            </div>
+
+                            <!-- A form field for the user to enter their email address. -->
+                            <div class="email_field">
+                                <label for="exampleFormControlInput1">Email address</label>
+                                <input type="email" class="form-control" id="email_field" placeholder="name@example.com"
+                                    name="email" required th:value="${user.email}">
+                                    <p class="errors" th:each="e : ${#fields.errors('email')}" th:text="${e}" role="alert"></p>
+                            </div>
+
+                            <!-- Creating a password field. -->
+                            <div class="password_field">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="password_field" placeholder="Password"
+                                    name="password" required>
+                                    <p class="errors" th:each="e : ${#fields.errors('password')}" th:text="${e}" role="alert"></p>
+                            </div>
+
+                            <!-- A text area for the user to enter their about. -->
+                            <div class="about_field">
+                                <label for="exampleFormControlTextarea1">About</label>
+                                <textarea class="form-control" id="about_field" rows="3" name="about"
+                                    th:value="${user.about}"></textarea>
+                            </div>
+
+                            <!-- A form field for the user to upload an image. -->
+                            <div class="image_field">
+                                <label for="exampleInputPassword1">Image</label>
+                                <input type="file" class="form-control" id="image_field" placeholder="" name="imageUrl">
+                            </div>
+                            <!-- A checkbox that the user must check to accept the terms and conditions. -->
+                            <div class="form-group form-check text-center">
+                            
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="accept">
+                                <label for="accept" required>Accept terms and conditions</label>
+                            </div>
+
+                            <!-- Creating two buttons, one for submitting the form and one for resetting
+                            the form. -->
+                            <div class="text-center">
+                                <button type="submit" class="btn bg-primary btn-block text-white ">Submit</button>
+                                <button type="reset" class="btn bg-danger btn-block text-white ">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

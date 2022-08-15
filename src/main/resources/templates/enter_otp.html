@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+        <div class="container mx-auto" style="width: 30rem; margin-top: 8%;">
+            <div class="card" style="border-radius: 5%;">
+                <div class="text-center">
+                    <div th:if="${session.message}" th:classappend="${session.message.type}" role="alert">
+                        <p th:text="${session.message.content}"></p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                        <form th:action="@{/validate}" method="post">
+                            <div class="card-body text-center">
+                                <input hidden type="email" placeholder="email" name="email"
+                                    class="form-control" th:value="${session.email}">
+                                <input type="text" placeholder="Otp" name="Otp"
+                                    class="form-control">
+                                <button class="btn btn-secondary mt-2">Validate Otp</button>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" th:fragment="layout(content)">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title th:text="${title}"></title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
+        <div class="container mx-auto">
+
+            <a class="navbar-brand text-uppercase" th:href="@{/}">Smart Contact Manager</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto text-uppercase">
+
+
+                    <li class="nav-item">
+                        <a class="nav-link " href=/logout>logout </a> </li> <li class="nav-item ">
+                            <a class="nav-link " th:href="@{/contact}">Contact Us</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="#"><span class="font-weight-bold text-monospace"
+                                th:text="${user.name}"></span></a>
+                    </li>
+            </div>
+    </nav>
+
+    <!-- A placeholder for the sidebar. -->
+    <div class="side">
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        <a th:href="${user.email}"></a>
+                    </li>
+                    <li>
+                        <a th:href="@{/user/index}"><i class="fa-solid fa-house-user"></i> Home</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/user/view/0}"> <i class="fa-solid fa-address-book"></i> View Contacts</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/user/add-contact}"><i class="fa-solid fa-circle-plus"></i> Add Contacts</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/user/userprofile}"> <i class="fa-solid fa-screwdriver-wrench"></i> Profile</a>
+                    </li>
+                    <li>
+                        <a href=/logout> <i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/contact}"> <i class="fa-solid fa-paper-plane"></i> Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+    </div>
+    <!-- Replacing the content of the page with the content of the page that is being called. -->
+    <div class="content">
+        <div th:replace="${content}"></div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script th:src="@{/js/javaScript.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+</body>
+
+</html>

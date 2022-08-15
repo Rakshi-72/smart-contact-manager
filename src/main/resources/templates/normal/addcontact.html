@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/user::layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tiny.cloud/1/monxoxgqgof7j31zsk9wlv5dqvjxlyl4w8jnxzmke6lhuusx/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <title>User dashboard</title>
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 mt-2">
+                    <div class="my-card">
+                        <form th:action="@{/user/add}" method="post" th:object="${contact}"
+                            enctype="multipart/form-data">
+
+                            <div class="text-center">
+                                <div th:if="${session.message}" th:classappend="${session.message.type}" role="alert">
+                                    <p th:text="${session.message.content}"></p>
+                                    <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                                </div>
+                            </div>
+
+                                <h3 class="text-center">Add Contact</h3>
+
+                                <!-- A form field for the user to enter their name. -->
+                                <div class="name_field">
+                                    <input type="text" class="form-control" id="name_field" placeholder="Contact Name"
+                                        name="name" th:value="${contact.name}" required> <br>
+                                </div>
+
+                                <!-- A form field for the user to enter their second name. -->
+                                <div class="name_field">
+                                    <input type="text" class="form-control" id="secondName_field"
+                                        placeholder="Second/ Nic name" th:value="${contact.secondName}" name="secondName"><br>
+                                </div>
+
+
+                                <!-- A form field for the user to enter their work. -->
+                                <div class="name_field">
+                                    <input type="text" class="form-control" id="work_field" placeholder="Work details" name="work" th:value="${contact.work}"><br>
+                                </div>
+
+
+                                <!-- A form field for the user to enter their email address. -->
+                                <div class="email_field">
+                                    <input type="email" class="form-control" id="email_field"
+                                        placeholder="Email  ex: name@example.com" name="email" th:value="${contact.email}"><br>
+                                </div>
+
+                                <!-- A form field for the user to enter their phone number. -->
+                                <div class="phone_field">
+                                    <input type="text" class="form-control" id="phone_field"
+                                        placeholder="Contact Number: XXXXXXXX98" name="phoneNumber" required>
+                                        <p class="errors text-center" th:each="e : ${#fields.errors('phoneNumber')}" th:text="${e}" role="alert"></p> <br>
+                                </div>
+
+                                 <!-- A text area for the user to enter their about. -->
+                                 <div class="about_field">
+                                    <textarea class="form-control" id="default-editor" rows="2" name="description"
+                                        placeholder="Description" th:value="${Description}"></textarea><br>
+                                </div>
+
+                                <!-- A form field for the user to upload an image. -->
+                                <div class="image_field">
+                                    <label for="image_field">Image</label>
+                                    <input type="file" class="form-control" id="image_field" placeholder=""
+                                        name="profileImage"><br>
+                                </div>
+
+                               
+
+                                <!-- Creating two buttons, one for submitting the form and one for resetting
+                                the form. -->
+                                <div class="text-center mt-1">
+                                    <button type="submit" class="btn bg-primary text-white ">Submit</button>
+                                    <button type="reset" class="btn bg-danger text-white ">Reset</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+</body>
+
+</html>

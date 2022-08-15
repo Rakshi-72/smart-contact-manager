@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/user::layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+
+
+        <div class="container mt-3" th:if="${contact}">
+
+            <img th:src="@{'/images/'+${contact.imageUrl}}" id="pics">
+            <a class="ml-5" th:href="@{'/user/update/'+${contact.cId}}"><i style="font-size: 30px;"
+                    class="fa-solid fa-brush"></i><b style="font-size: 30px;">Edit</b> </a>
+
+            <a class="ml-5" th:href="@{'/user/delete/'+${contact.cId}}"><i style="font-size: 30px;"
+                    class="fa-solid fa-trash-can"></i><b style="font-size: 30px;">Delete</b> </a>
+
+
+            <div class="text-center mt-3">
+                <h1 th:text="${contact.name}"></h1><br>
+            </div>
+            <div style="margin-left: 23%; margin-right: 15%;">
+                <table class="table">
+                    <tbody class="font-weight-bold">
+                        <tr>
+                            <th scope="row">Nick Name</th>
+                            <td th:text="${contact.secondName}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Work</th>
+                            <td th:text="${contact.work}"></td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row">Email</th>
+                            <td th:text="${contact.email}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Phone</th>
+                            <td th:text="${contact.phoneNumber}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td th:text="${contact.description}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+    </section>
+</body>
+
+</html>
